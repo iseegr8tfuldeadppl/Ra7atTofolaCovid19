@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mainbuttonsides">30dp</dimen>
+    <dimen name="mainbetweenbuttons">20dp</dimen>
+    <dimen name="buttonsradius">30dp</dimen>
+    <dimen name="strokethiccness">1dp</dimen>
+    <dimen name="buttonstextsize">22sp</dimen>
+    <dimen name="largetitles">37sp</dimen>
+    <dimen name="pagetopandbottompaddings">30dp</dimen>
+    <dimen name="regulartextsidepaddings">20dp</dimen>
+    <dimen name="betweentitleandtext">10dp</dimen>
+    <dimen name="imagesides">40dp</dimen>
+    <dimen name="starsizedepth">30dp</dimen>
+    <dimen name="footer">50dp</dimen>
+    <dimen name="startsdepthsize2">45dp</dimen>
+    <dimen name="startsdepthsize3">20dp</dimen>
+    <dimen name="betweenstars">10dp</dimen>
+    <dimen name="goodtextsize">24sp</dimen>
+    <dimen name="tofolaa">25sp</dimen>
+    <dimen name="darelbeida">20sp</dimen>
+    <dimen name="logosize">110dp</dimen>
+    <dimen name="logofromtop">35dp</dimen>
+    <dimen name="selectimagesizes">130dp</dimen>
+    <dimen name="betweenlogontitle">10dp</dimen>
+</resources>

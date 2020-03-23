@@ -1,0 +1,2 @@
+rootProject.name='Croisson Rouge Competitions Dar El Beida'
+include ':app'

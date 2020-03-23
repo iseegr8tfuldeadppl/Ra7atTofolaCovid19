@@ -1,0 +1,11 @@
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/rounded_edittext">
+    <TextView
+        android:textSize="35sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:id="@+id/resumee"/>
+</ScrollView>

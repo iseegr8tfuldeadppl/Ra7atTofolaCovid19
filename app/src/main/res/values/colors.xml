@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="black">#000000</color>
+    <color name="buttons">#35E813</color>
+    <color name="buttonsclicked">#88F274</color>
+    <color name="mainbackground">#eeeeee</color>
+    <color name="mainbackground2">#D9D1D1</color>
+    <color name="coolred">#FF5733</color>
+    <color name="uncoolred">#cc0001</color>
+    <color name="loadingscreencolor">#98555555</color>
+    <color name="white">#FFF</color>
+    <color name="bluuuuuue">#1EE1E4</color>
+</resources>

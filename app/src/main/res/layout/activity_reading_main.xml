@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReadingMain"
+    android:background="@drawable/mainbackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/fragmentor"/>
+
+
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2">
+        <Button
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/enter"
+            android:layout_weight="1"
+            android:onClick="submitClicked"
+            android:textSize="@dimen/buttonstextsize"
+            android:background="@drawable/buttons"
+            android:text="@string/lemmein"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/checksubmissions"
+            android:layout_weight="1"
+            android:onClick="checksubmissionsClicked"
+            android:textSize="@dimen/buttonstextsize"
+            android:background="@drawable/buttons"
+            android:text="@string/checksubmissions2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/loadingscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</FrameLayout>

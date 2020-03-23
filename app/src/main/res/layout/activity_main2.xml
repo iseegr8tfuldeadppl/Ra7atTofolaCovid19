@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main2Activity"
+    android:background="@drawable/mainbackground">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="top|center_horizontal"
+        android:layout_marginTop="@dimen/logofromtop">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="@dimen/logosize"
+                android:layout_height="@dimen/logosize"
+                android:id="@+id/logo"
+                android:layout_marginBottom="@dimen/betweenlogontitle"
+                android:contentDescription="@string/app_name" />
+            <TextView
+                android:gravity="center"
+                android:textSize="@dimen/tofolaa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tofola"
+                android:textColor="@color/uncoolred"
+                android:id="@+id/tofola"/>
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_marginBottom="@dimen/betweenlogontitle"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="@dimen/logosize"
+                android:layout_height="@dimen/logosize"
+                android:id="@+id/logo2"
+                android:contentDescription="@string/app_name" />
+            <TextView
+                android:text="@string/organization"
+                android:gravity="center"
+                android:textSize="@dimen/tofolaa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/uncoolred"
+                android:id="@+id/organization"/>
+        </LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <EditText
+                android:background="@drawable/rounded_edittext"
+                android:textSize="@dimen/goodtextsize"
+                android:hint="@string/your_name"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:autofillHints="@string/your_name"
+                android:layout_gravity="center"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:id="@+id/name"
+                android:inputType="text" />
+
+            <Button
+                android:background="@drawable/buttons"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/enter"
+                android:textAllCaps="false"
+                android:textSize="@dimen/goodtextsize"
+                android:id="@+id/enter"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="confirmClicked" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:id="@+id/parental"
+                android:textColor="@color/black"
+                android:text="@string/comeonobn"
+                android:textSize="19sp"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="@string/creditter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:id="@+id/creditter"
+        android:layout_marginBottom="3dp"/>
+
+    <FrameLayout
+        android:id="@+id/loadingscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+</FrameLayout>

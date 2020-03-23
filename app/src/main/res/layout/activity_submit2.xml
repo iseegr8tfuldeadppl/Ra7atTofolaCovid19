@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".Submit2">
+
+    <LinearLayout
+        android:autofillHints="@string/yourresume"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:background="@drawable/rounded_edittext"
+            android:textSize="20sp"
+            android:hint="@string/booknam"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:gravity="top|start"
+            android:paddingTop="11dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingBottom="11dp"
+            android:autofillHints="@string/booknam"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:id="@+id/bookname"/>
+        <EditText
+            android:visibility="gone"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="13sp"
+            android:hint="@string/yourresume"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:gravity="top|start"
+            android:paddingTop="11dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingBottom="11dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:textColor="@color/black"
+            android:id="@+id/resume"
+            android:autofillHints="@string/yourresume" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="#82B3AFAF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:text="@string/joinwithreading" />
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp">
+        <Button
+            android:background="@drawable/buttons"
+            android:text="@string/takepicofbook"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:id="@+id/btnCamera"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="cameraClicked" />
+        <Button
+            android:background="@drawable/buttons"
+            android:text="@string/confirmed"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:id="@+id/btnUpload"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="uploadImageClicked" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/loadingscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+            <TextView
+                android:gravity="center"
+                android:id="@+id/percentage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="50sp"
+                android:textColor="@color/bluuuuuue"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/loadingscreen2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</FrameLayout>

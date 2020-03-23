@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".Submit3">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:contentDescription="@string/youdrawing" />
+
+    <TextView
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="#82B3AFAF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:id="@+id/title"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:text="@string/joinwithplate" />
+
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="SelectImageClicked"
+            android:id="@+id/btnSelect"
+            android:layout_width="@dimen/selectimagesizes"
+            android:layout_height="@dimen/selectimagesizes"
+            android:contentDescription="@string/galerie"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="cameraClicked"
+            android:id="@+id/btnCamera"
+            android:layout_width="@dimen/selectimagesizes"
+            android:layout_height="@dimen/selectimagesizes"
+            android:contentDescription="@string/camera" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp">
+        <Button
+            android:visibility="gone"
+            android:background="@drawable/buttons"
+            android:layout_marginBottom="15dp"
+            android:text="@string/changer"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:id="@+id/btnCancel"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="cancelClicked" />
+        <Button
+            android:background="@drawable/buttons"
+            android:text="@string/upload"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:id="@+id/btnUpload"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="uploadImageClicked" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/loadingscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+            <TextView
+                android:gravity="center"
+                android:id="@+id/percentage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="50sp"
+                android:textColor="@color/bluuuuuue"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/loadingscreen2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</FrameLayout>

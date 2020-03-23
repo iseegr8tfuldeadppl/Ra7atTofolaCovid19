@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground"
+    tools:context=".ViewSomebodysSubmission2">
+
+    <FrameLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="makepicturezoomableClicked"
+            android:id="@+id/drawing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/drawing" />
+        <LinearLayout
+            android:id="@+id/ktibaholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_edittext"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="5dp"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:id="@+id/booknamee"/>
+            <Button
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:onClick="showimageClicked"
+                android:textSize="13sp"
+                android:id="@+id/showimage"
+                android:background="@drawable/buttons"
+                android:text="@string/showboook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/rounded_edittext">
+                <LinearLayout
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:orientation="vertical"
+                    android:id="@+id/resumefragment"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <ImageView
+            android:id="@+id/arrowleft"
+            android:onClick="previousClicked"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/previous"
+            android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:textSize="35sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:id="@+id/submittersdisplay"/>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:id="@+id/submitterstarsholder"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_marginEnd="@dimen/betweenstars"
+                    android:layout_marginStart="@dimen/betweenstars"
+                    android:id="@+id/starone2"
+                    android:layout_width="@dimen/startsdepthsize3"
+                    android:layout_height="@dimen/startsdepthsize3"
+                    android:contentDescription="@string/star" />
+                <ImageView
+                    android:id="@+id/startwo2"
+                    android:layout_width="@dimen/startsdepthsize3"
+                    android:layout_height="@dimen/startsdepthsize3"
+                    android:contentDescription="@string/star"  />
+                <ImageView
+                    android:layout_marginEnd="@dimen/betweenstars"
+                    android:layout_marginStart="@dimen/betweenstars"
+                    android:id="@+id/starthree2"
+                    android:layout_width="@dimen/startsdepthsize3"
+                    android:layout_height="@dimen/startsdepthsize3"
+                    android:contentDescription="@string/star"  />
+                <ImageView
+                    android:id="@+id/starfour2"
+                    android:layout_width="@dimen/startsdepthsize3"
+                    android:layout_height="@dimen/startsdepthsize3"
+                    android:contentDescription="@string/star"  />
+                <ImageView
+                    android:layout_marginEnd="@dimen/betweenstars"
+                    android:layout_marginStart="@dimen/betweenstars"
+                    android:id="@+id/starfive2"
+                    android:layout_width="@dimen/startsdepthsize3"
+                    android:layout_height="@dimen/startsdepthsize3"
+                    android:contentDescription="@string/star"  />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:id="@+id/ratings"/>
+        </LinearLayout>
+        <ImageView
+            android:onClick="nextClicked"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/arrowright"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/next"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginBottom="14dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginEnd="@dimen/betweenstars"
+                android:layout_marginStart="@dimen/betweenstars"
+                android:onClick="oneClicked"
+                android:id="@+id/starone"
+                android:layout_width="@dimen/startsdepthsize2"
+                android:layout_height="@dimen/startsdepthsize2"
+                android:contentDescription="@string/star" />
+            <ImageView
+                android:onClick="twoClicked"
+                android:id="@+id/startwo"
+                android:layout_width="@dimen/startsdepthsize2"
+                android:layout_height="@dimen/startsdepthsize2"
+                android:contentDescription="@string/star"  />
+            <ImageView
+                android:onClick="threeClicked"
+                android:layout_marginEnd="@dimen/betweenstars"
+                android:layout_marginStart="@dimen/betweenstars"
+                android:id="@+id/starthree"
+                android:layout_width="@dimen/startsdepthsize2"
+                android:layout_height="@dimen/startsdepthsize2"
+                android:contentDescription="@string/star"  />
+            <ImageView
+                android:onClick="fourClicked"
+                android:id="@+id/starfour"
+                android:layout_width="@dimen/startsdepthsize2"
+                android:layout_height="@dimen/startsdepthsize2"
+                android:contentDescription="@string/star"  />
+            <ImageView
+                android:onClick="fiveClicked"
+                android:layout_marginEnd="@dimen/betweenstars"
+                android:layout_marginStart="@dimen/betweenstars"
+                android:id="@+id/starfive"
+                android:layout_width="@dimen/startsdepthsize2"
+                android:layout_height="@dimen/startsdepthsize2"
+                android:contentDescription="@string/star"  />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:onClick="checksubmissionsClicked"
+                android:textSize="@dimen/buttonstextsize"
+                android:id="@+id/backtosubmissions"
+                android:background="@drawable/buttons"
+                android:text="@string/backk"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"/>
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/submitmine"
+                android:layout_weight="1"
+                android:onClick="submitClicked"
+                android:textSize="@dimen/buttonstextsize"
+                android:background="@drawable/buttons"
+                android:text="@string/join"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/loadingscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2">
+            <TextView
+                android:gravity="center"
+                android:id="@+id/percentage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="50sp"
+                android:textColor="#1EE1E4"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+</FrameLayout>

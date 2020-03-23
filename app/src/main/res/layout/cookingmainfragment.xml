@@ -1,0 +1,38 @@
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/pagetopandbottompaddings"
+        android:paddingBottom="150dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/largetitles"
+            android:textColor="@color/black"
+            android:id="@+id/title"
+            android:text="@string/cookingcomp"
+            android:gravity="center_horizontal"/>
+        <TextView
+            android:layout_marginTop="@dimen/betweentitleandtext"
+            android:text="@string/cookingmaintext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonstextsize"
+            android:id="@+id/explanation"
+            android:textColor="@color/black"
+            android:paddingStart="@dimen/regulartextsidepaddings"
+            android:paddingEnd="@dimen/regulartextsidepaddings" />
+        <ImageView
+            android:id="@+id/display1"
+            android:layout_marginTop="@dimen/betweentitleandtext"
+            android:layout_marginStart="@dimen/imagesides"
+            android:layout_marginEnd="@dimen/imagesides"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/fish" />
+    </LinearLayout>
+
+</ScrollView>
