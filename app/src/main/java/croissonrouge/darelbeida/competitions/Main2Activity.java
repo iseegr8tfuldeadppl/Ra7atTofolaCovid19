@@ -59,6 +59,7 @@ public class Main2Activity extends AppCompatActivity {
     private void fonts() {
         Typeface font = Typeface.createFromAsset(getAssets(), "Tajawal-Regular.ttf");
 
+        tofolaa.setTypeface(font);
         boob2.setTypeface(font);
         parental.setTypeface(font);
         enter.setTypeface(font);
@@ -71,7 +72,7 @@ public class Main2Activity extends AppCompatActivity {
         boob.setTypeface(font);
     }
 
-    private TextView tofola, organization, creditter, parental, titler1, titler2, boob, boob2;
+    private TextView tofola, organization, creditter, parental, titler1, titler2, boob, boob2, tofolaa;
     private Button enter;
     private ImageView logo, logo2;
     private FrameLayout loadingscreen;
@@ -90,6 +91,7 @@ public class Main2Activity extends AppCompatActivity {
         boob = findViewById(R.id.boob);
         titler2 = findViewById(R.id.titler2);
         titler1 = findViewById(R.id.titler1);
+        tofolaa = findViewById(R.id.tofolaa);
     }
 
 

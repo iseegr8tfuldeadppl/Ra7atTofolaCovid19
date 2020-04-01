@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     private void fonts() {
         Typeface font = Typeface.createFromAsset(getAssets(), "Tajawal-Regular.ttf");
 
+        tofolaa.setTypeface(font);
         parental.setTypeface(font);
         tofola.setTypeface(font);
         drawing.setTypeface(font);
@@ -130,11 +131,12 @@ public class MainActivity extends AppCompatActivity {
         creditter.setTypeface(font);
     }
 
-    private TextView tofola, connecting, organization, creditter, parental;
+    private TextView tofola, connecting, organization, creditter, parental, tofolaa;
     private Button drawing, reading, cooking;
     private ImageView logo, logo2;
     private FrameLayout loadingscreen;
     private void variables() {
+        tofolaa = findViewById(R.id.tofolaa);
         parental = findViewById(R.id.parental);
         cooking = findViewById(R.id.cooking);
         tofola = findViewById(R.id.tofola);

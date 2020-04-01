@@ -64,6 +64,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_marginBottom="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="37sp"
+                android:textColor="@color/black"
+                android:id="@+id/tofolaa"
+                android:text="@string/rahaaa"
+                android:gravity="center" />
             <Button
                 android:layout_marginStart="@dimen/mainbuttonsides"
                 android:layout_marginEnd="@dimen/mainbuttonsides"
