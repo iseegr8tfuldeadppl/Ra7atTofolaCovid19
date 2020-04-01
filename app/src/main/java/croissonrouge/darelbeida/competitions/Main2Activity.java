@@ -8,13 +8,16 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,14 +43,12 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
         permissions();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        isalreadyconnected();
     }
 
     private void sql() {
@@ -58,19 +59,25 @@ public class Main2Activity extends AppCompatActivity {
     private void fonts() {
         Typeface font = Typeface.createFromAsset(getAssets(), "Tajawal-Regular.ttf");
 
+        boob2.setTypeface(font);
         parental.setTypeface(font);
         enter.setTypeface(font);
         name.setTypeface(font);
         tofola.setTypeface(font);
         organization.setTypeface(font);
         creditter.setTypeface(font);
+        titler1.setTypeface(font);
+        titler2.setTypeface(font);
+        boob.setTypeface(font);
     }
 
-    private TextView tofola, organization, creditter, parental;
+    private TextView tofola, organization, creditter, parental, titler1, titler2, boob, boob2;
     private Button enter;
     private ImageView logo, logo2;
     private FrameLayout loadingscreen;
     private void variables() {
+        boob2 = findViewById(R.id.boob2);
+        fuckyouloadingscreen = findViewById(R.id.fuckyouloadingscreen);
         parental = findViewById(R.id.parental);
         loadingscreen = findViewById(R.id.loadingscreen);
         name = findViewById(R.id.name);
@@ -80,6 +87,9 @@ public class Main2Activity extends AppCompatActivity {
         logo = findViewById(R.id.logo);
         logo2 = findViewById(R.id.logo2);
         creditter = findViewById(R.id.creditter);
+        boob = findViewById(R.id.boob);
+        titler2 = findViewById(R.id.titler2);
+        titler1 = findViewById(R.id.titler1);
     }
 
 
@@ -152,11 +162,9 @@ public class Main2Activity extends AppCompatActivity {
             if (mAuth.getCurrentUser() != null) {
                 outter();
             } else {
-                runfrontpage();
                 only_login_to_firebase();
             }
         } else {
-            runfrontpage();
             only_login_to_firebase();
         }
     }
@@ -176,23 +184,56 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private final int STORAGE_REQUEST_CODE = 23;
+    private LinearLayout fuckyouloadingscreen;
     private void permissions() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
 
+            runfrontpage();
+
+
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
+        } else {
+            runfrontpage();
+            fuckyouloadingscreen.setVisibility(View.GONE);
+            isalreadyconnected();
         }
     }
 
+
+    public void menuClicked(View view) {
+        permissions();
+    }
+
+    private boolean firstrequest = true;
+    private boolean thirdrequest = false;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(STORAGE_REQUEST_CODE==requestCode && grantResults.length > 0){
             if(grantResults[0] == PackageManager.PERMISSION_DENIED){
-                exit();
+                if(firstrequest){
+                    firstrequest = false;
+                    fuckyouloadingscreen.setVisibility(View.VISIBLE);
+                } else {
+                    if(!thirdrequest){
+                        permissions();
+                        thirdrequest = true;
+                    } else {
+                        // send to a menu
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                Uri.fromParts("package", getPackageName(), null));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                }
+            } else {
+                runfrontpage();
+                fuckyouloadingscreen.setVisibility(View.GONE);
+                isalreadyconnected();
             }
         }
     }
@@ -282,6 +323,7 @@ public class Main2Activity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null) {
             mAuth.getCurrentUser().reload();
+            loadingscreen.setVisibility(View.GONE);
         } else {
             mAuth.signInAnonymously()
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
@@ -301,4 +343,13 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
 
+    public void doneClicked(View view) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            print(getResources().getString(R.string.dpoo));
+        }
+    }
 }

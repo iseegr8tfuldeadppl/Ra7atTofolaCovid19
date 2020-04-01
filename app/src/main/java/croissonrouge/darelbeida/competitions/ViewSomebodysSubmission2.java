@@ -325,6 +325,7 @@ public class ViewSomebodysSubmission2 extends AppCompatActivity implements Commu
                 /*if(RATINGS==0){
                     print("Be The First To Rate This Post!");
                 }*/
+
                 update_my_rating(getApplicationContext(), getResources(), Integer.parseInt(myrating));
                 display_overall_rating(getApplicationContext(), getResources(), RATING);
             }
@@ -566,9 +567,6 @@ public class ViewSomebodysSubmission2 extends AppCompatActivity implements Commu
         updatefirebase();
         update_my_rating(this, getResources(), 1);
         display_overall_rating(this, getResources(), RATING);
-        Log.i("HH", "MYVOTEONHISPOST " + MYVOTEONHISPOST);
-        Log.i("HH", "RATINGS " + RATINGS);
-        Log.i("HH", "RATING " + RATING);
     }
 
     public void twoClicked(View view) {
@@ -609,6 +607,9 @@ public class ViewSomebodysSubmission2 extends AppCompatActivity implements Commu
     }
 
     private void calculate_new_overall_rating(int vote) {
+
+
+
         if(RATINGS==0){
             MYVOTEONHISPOST = vote;
             RATING = vote;
@@ -632,6 +633,36 @@ public class ViewSomebodysSubmission2 extends AppCompatActivity implements Commu
             // TODO update this in firebase aswell
             MYVOTEONHISPOST = vote;
         }
+
+        SQLSharing.mydb3 = SQL3.getInstance(getApplicationContext());
+        SQLSharing.mycursor3 = SQLSharing.mydb3.getData();
+        while(SQLSharing.mycursor3.moveToNext()){
+            if(SQLSharing.mycursor3.getString(2).equals(String.valueOf(SUBMITTERSUID))){
+                SQLSharing.mydb3.updateData(SQLSharing.mycursor3.getString(0),
+                        SUBMITTERSNAME,
+                        SUBMITTERSUID,
+                        String.valueOf(MYVOTEONHISPOST),
+                        String.valueOf(RATING),
+                        String.valueOf(RATINGS),
+                        IMAGEONCLOUD,
+                        BOOKTITLE,
+                        RESUME);
+            }
+        }
+
+        if(SQLSharing.mycursor3!=null)
+            SQLSharing.mycursor3.close();
+        if(SQLSharing.mydb3!=null)
+            SQLSharing.mydb3.close();
+
+        for(int i=0; i<Submissions.size(); i++){
+            if(Submissions.get(i).SUBMITTERSUID.equals(SUBMITTERSUID)){
+                Submissions.get(i).RATING = RATING;
+                Submissions.get(i).RATINGS = RATINGS;
+                Submissions.get(i).MYVOTEONHISPOST = MYVOTEONHISPOST;
+            }
+        }
+
 
     }
 

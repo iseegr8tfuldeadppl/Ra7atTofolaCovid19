@@ -239,10 +239,35 @@ public class Submit3 extends AppCompatActivity {
 
 
     public void SelectImageClicked(View view) {
-        newone = true;
-        SelectImage();
+        permissions();
     }
 
+
+    private final int STORAGE_REQUEST_CODE = 23;
+    private void permissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_REQUEST_CODE);
+        } else {
+            newone = true;
+            SelectImage();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(STORAGE_REQUEST_CODE==requestCode && grantResults.length > 0){
+            if(grantResults[0] == PackageManager.PERMISSION_DENIED){
+                newone = true;
+                SelectImage();
+            }
+        }
+    }
     private boolean uploadplease = false;
     public void uploadImageClicked(View view) {
         if(ready_to_upload) {

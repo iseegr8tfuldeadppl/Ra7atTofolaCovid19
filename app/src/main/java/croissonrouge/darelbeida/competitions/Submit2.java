@@ -18,6 +18,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -116,9 +117,25 @@ public class Submit2 extends AppCompatActivity {
                     load_from_storage_and_display(this);
                 }
             }
+
+            enterkeylistener();
         } catch(Exception e){
             Log.i("HH", "bruh2 " + e);
         }
+    }
+
+
+    private void enterkeylistener() {
+        booktitle.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // TODO Auto-generated method stub
+                if (keyCode == KeyEvent.KEYCODE_ENTER) { //Whenever you got user click enter. Get text in edittext and check it equal test1. If it's true do your code in listenerevent of button3
+                    uploadimageClickedd();
+                }
+
+                return true;
+            }
+        });
     }
 
     private String idd2, idd3;
@@ -561,6 +578,10 @@ public class Submit2 extends AppCompatActivity {
     private boolean uploadplease = false;
     private String resumetext, titletext;
     public void uploadImageClicked(View view) {
+        uploadimageClickedd();
+    }
+
+    private void uploadimageClickedd() {
         if(step1){
             titletext = booktitle.getText().toString();
             if(!titletext.equals("")) {
@@ -594,7 +615,6 @@ public class Submit2 extends AppCompatActivity {
                             userRef.child("ratings").setValue("0");
 
 
-                            noworkgoingon = true;
                             loadingscreen.setVisibility(GONE);
                             print(getResources().getString(R.string.donee));
                             SQLSharing.mydb = SQL.getInstance(getApplicationContext());

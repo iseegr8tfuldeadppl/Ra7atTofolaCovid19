@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">راحة الطفولة الدار البيضاء</string>
+    <string name="app_name">إستراحة الطفولة</string>
     <string name="drawingstitle">مسابقة الرسم</string>
-    <string name="readingtitle">مسابقة المطالعة للأطفال</string>
+    <string name="readingtitle">مسابقة المطالعة</string>
     <string name="checksubmissions">رسومات أصدقائي</string>
     <string name="checksubmissions2">مطالعات أصدقائي</string>
     <string name="checksubmissions3">أطباق أصدقائي</string>
@@ -51,7 +51,7 @@
     <string name="doyouhaveinternet">هل أنت متَّصِل بالإنترنت؟</string>
     <string name="connecting">جاري الإتِّصال بالإنترنت..</string>
     <string name="readingexplanation">في هذه المسابقة بإمكانك كتابة شعر، كتابة قصة أو تلخيص كتاب قد قرأته و عرضه على زملائك لتقييمه!</string>
-    <string name="joinwithreading">المشاركة بمطالعتك\n(كتب الأطفال)</string>
+    <string name="joinwithreading">المشاركة بمطالعتك</string>
     <string name="yourresume">ملخَّصك</string>
     <string name="booknam">العنوان</string>
     <string name="takepicofbook">أخذ صورة للكِتاب</string>
@@ -69,4 +69,9 @@
     <string name="creditter">الهيئة الوطنية لحماية و ترقية الطفولة</string>
     <string name="organization">ه.و.ح.ت.ط</string>
     <string name="comeonobn">بمرافقة أحد الوالدين</string>
+    <string name="gg">إفتح صفحة قبول الصلاحية</string>
+    <string name="gotta">عليك بقبول الصلاحية من أجل الدخول</string>
+    <string name="gotta2">(Permissions)</string>
+    <string name="gcg">قمت بتفعيل الصلاحية</string>
+    <string name="dpoo">يرجى تفعيل الصلاحية</string>
 </resources>

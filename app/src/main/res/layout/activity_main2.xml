@@ -136,4 +136,65 @@
             android:layout_height="wrap_content" />
     </FrameLayout>
 
+    <LinearLayout
+        android:id="@+id/fuckyouloadingscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/loadingscreencolor"
+        android:orientation="vertical"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="27sp"
+            android:id="@+id/titler1"
+            android:text="@string/gotta"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="27sp"
+            android:id="@+id/titler2"
+            android:text="@string/gotta2"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginBottom="90dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+        <Button
+            android:onClick="menuClicked"
+            android:textSize="23sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/gg"
+            android:textAllCaps="false"
+            android:id="@+id/boob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/buttons"/>
+        <Button
+            android:onClick="doneClicked"
+            android:textSize="23sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/gcg"
+            android:textAllCaps="false"
+            android:id="@+id/boob2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/buttons"/>
+    </LinearLayout>
+
 </FrameLayout>

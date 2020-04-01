@@ -66,7 +66,6 @@ public class ReadingMainFragment extends Fragment {
 
         }
 
-
     }
 
     private TextView explanation, title;

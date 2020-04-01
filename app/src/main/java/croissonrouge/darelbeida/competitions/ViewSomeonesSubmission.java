@@ -21,7 +21,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +37,6 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import croissonrouge.darelbeida.competitions.SQLite.SQL2;
 import croissonrouge.darelbeida.competitions.SQLite.SQLSharing;
 
@@ -287,6 +285,8 @@ public class ViewSomeonesSubmission extends AppCompatActivity {
                 /*if(RATINGS==0){
                     print("Be The First To Rate This Post!");
                 }*/
+
+
                 update_my_rating(getApplicationContext(), getResources(), Integer.parseInt(myrating));
                 display_overall_rating(getApplicationContext(), getResources(), RATING);
             }
@@ -520,9 +520,6 @@ public class ViewSomeonesSubmission extends AppCompatActivity {
         updatefirebase();
         update_my_rating(this, getResources(), 1);
         display_overall_rating(this, getResources(), RATING);
-        Log.i("HH", "MYVOTEONHISPOST " + MYVOTEONHISPOST);
-        Log.i("HH", "RATINGS " + RATINGS);
-        Log.i("HH", "RATING " + RATING);
     }
 
     public void twoClicked(View view) {
@@ -563,6 +560,8 @@ public class ViewSomeonesSubmission extends AppCompatActivity {
     }
 
     private void calculate_new_overall_rating(int vote) {
+
+
         if(RATINGS==0){
             MYVOTEONHISPOST = vote;
             RATING = vote;
@@ -585,6 +584,35 @@ public class ViewSomeonesSubmission extends AppCompatActivity {
 
             // TODO update this in firebase aswell
             MYVOTEONHISPOST = vote;
+        }
+
+
+        SQLSharing.mydb2 = SQL2.getInstance(getApplicationContext());
+        SQLSharing.mycursor2 = SQLSharing.mydb2.getData();
+        while(SQLSharing.mycursor2.moveToNext()){
+            if(SQLSharing.mycursor2.getString(2).equals(String.valueOf(SUBMITTERSUID))){
+                SQLSharing.mydb2.updateData(SQLSharing.mycursor2.getString(0),
+                        SUBMITTERSNAME,
+                        SUBMITTERSUID,
+                        String.valueOf(MYVOTEONHISPOST),
+                        String.valueOf(RATING),
+                        String.valueOf(RATINGS),
+                        IMAGEONCLOUD);
+            }
+        }
+
+        if(SQLSharing.mycursor2!=null)
+            SQLSharing.mycursor2.close();
+        if(SQLSharing.mydb2!=null)
+            SQLSharing.mydb2.close();
+
+        for(int i=0; i<Submissions.size(); i++){
+            if(Submissions.get(i).SUBMITTERSUID.equals(SUBMITTERSUID)){
+                Submissions.get(i).RATING = RATING;
+                Submissions.get(i).RATINGS = RATINGS;
+                Submissions.get(i).MYVOTEONHISPOST = MYVOTEONHISPOST;
+
+            }
         }
 
     }

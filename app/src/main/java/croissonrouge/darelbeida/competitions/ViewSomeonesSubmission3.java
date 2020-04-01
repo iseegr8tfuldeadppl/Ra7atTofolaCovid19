@@ -37,7 +37,6 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import croissonrouge.darelbeida.competitions.SQLite.SQL4;
 import croissonrouge.darelbeida.competitions.SQLite.SQLSharing;
 
@@ -519,9 +518,6 @@ public class ViewSomeonesSubmission3 extends AppCompatActivity {
         updatefirebase();
         update_my_rating(this, getResources(), 1);
         display_overall_rating(this, getResources(), RATING);
-        Log.i("HH", "MYVOTEONHISPOST " + MYVOTEONHISPOST);
-        Log.i("HH", "RATINGS " + RATINGS);
-        Log.i("HH", "RATING " + RATING);
     }
 
     public void twoClicked(View view) {
@@ -562,6 +558,9 @@ public class ViewSomeonesSubmission3 extends AppCompatActivity {
     }
 
     private void calculate_new_overall_rating(int vote) {
+
+
+
         if(RATINGS==0){
             MYVOTEONHISPOST = vote;
             RATING = vote;
@@ -586,6 +585,36 @@ public class ViewSomeonesSubmission3 extends AppCompatActivity {
             MYVOTEONHISPOST = vote;
         }
 
+
+
+        SQLSharing.mydb4 = SQL4.getInstance(getApplicationContext());
+        SQLSharing.mycursor4 = SQLSharing.mydb4.getData();
+        while(SQLSharing.mycursor4.moveToNext()){
+            if(SQLSharing.mycursor4.getString(2).equals(String.valueOf(SUBMITTERSUID))){
+                SQLSharing.mydb4.updateData(SQLSharing.mycursor4.getString(0),
+                        SUBMITTERSNAME,
+                        SUBMITTERSUID,
+                        String.valueOf(MYVOTEONHISPOST),
+                        String.valueOf(RATING),
+                        String.valueOf(RATINGS),
+                        IMAGEONCLOUD);
+            }
+        }
+
+        if(SQLSharing.mycursor4!=null)
+            SQLSharing.mycursor4.close();
+        if(SQLSharing.mydb4!=null)
+            SQLSharing.mydb4.close();
+
+
+        for(int i=0; i<Submissions.size(); i++){
+            if(Submissions.get(i).SUBMITTERSUID.equals(SUBMITTERSUID)){
+                Submissions.get(i).RATING = RATING;
+                Submissions.get(i).RATINGS = RATINGS;
+                Submissions.get(i).MYVOTEONHISPOST = MYVOTEONHISPOST;
+
+            }
+        }
     }
 
     public void makepicturezoomableClicked(View view) {
