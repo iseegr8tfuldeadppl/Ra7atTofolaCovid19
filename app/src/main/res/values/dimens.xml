@@ -22,4 +22,6 @@
     <dimen name="logofromtop">35dp</dimen>
     <dimen name="selectimagesizes">130dp</dimen>
     <dimen name="betweenlogontitle">10dp</dimen>
+    <dimen name="colorsradius">20dp</dimen>
+    <dimen name="betweencolorpalletes">10dp</dimen>
 </resources>

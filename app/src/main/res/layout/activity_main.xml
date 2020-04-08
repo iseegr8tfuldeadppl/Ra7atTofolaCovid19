@@ -105,6 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>
             <Button
+                android:visibility="gone"
                 android:layout_marginStart="@dimen/mainbuttonsides"
                 android:layout_marginEnd="@dimen/mainbuttonsides"
                 android:textSize="@dimen/goodtextsize"

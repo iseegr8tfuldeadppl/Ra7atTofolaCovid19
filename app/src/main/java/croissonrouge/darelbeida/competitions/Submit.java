@@ -1,9 +1,7 @@
 package croissonrouge.darelbeida.competitions;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -12,18 +10,17 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.BitmapCompat;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,7 +43,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-
+import croissonrouge.darelbeida.competitions.Paint.PaintView;
 import croissonrouge.darelbeida.competitions.SQLite.SQL;
 import croissonrouge.darelbeida.competitions.SQLite.SQLSharing;
 
@@ -54,9 +51,9 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 
-public class Submit extends AppCompatActivity {
+public class Submit extends AppCompatActivity implements PaintCummunication {
 
-    private ImageView btnSelect, btnCamera;
+    private ImageView btnSelect/*, btnCamera*/;
     private Button btnUpload;
     private TextView title, percentage;
     private FrameLayout loadingscreen;
@@ -64,14 +61,15 @@ public class Submit extends AppCompatActivity {
     // view for image view
     private ImageView imageView;
 
-    private Bitmap bitmap;
+    /*private Bitmap bitmap;*/
 
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
 
     // instance for firebase storage and StorageReference
-    FirebaseStorage storage;
-    StorageReference storageReference;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    private boolean allowdrawing = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,31 +89,46 @@ public class Submit extends AppCompatActivity {
             String imagename = SQLSharing.mycursor.getString(1);
             if(!imagename.equals("")){
                 if(pathtoimage(imagename)){
-                    btnSelect.setVisibility(GONE);
+                    allowdrawing = false;
                     /*btnCamera.setVisibility(GONE);*/
+                    colorPallete.setVisibility(GONE);
+                    drawingTab.setVisibility(GONE);
                     redarrow.setVisibility(VISIBLE);
                     loadingscreen2.setVisibility(VISIBLE);
+                    imageView.setVisibility(VISIBLE);
                     load_from_storage_and_display(this);
                 }
             }
             close_sql();
+
+            if(allowdrawing){
+                DisplayMetrics metrics = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                paintView.init(metrics);
+
+                paintView.normal();
+
+                setimages();
+            }
+
         } catch(Exception e){
             Log.i("HH", "bruh3 " + e);
         }
     }
     private String idd;
 
+    private Bitmap image;
     private Handler displayfromstorage = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
             loadingscreen2.setVisibility(GONE);
             imageView.setImageBitmap(image);
-            image = null; // TODO if causes issues remove it
+            /*image = null; // TODO if causes issues remove it*/
             return true; }
     });
 
 
-    private Bitmap image;
+    /*private Bitmap image;*/
     private void load_from_storage_and_display(final Context context) {
         Runnable descaleimageandsaveitRunnable=new Runnable() {@Override public void run() {
             // TODO: check image size and set descale accordingly
@@ -143,11 +156,11 @@ public class Submit extends AppCompatActivity {
     }
 
     private void images() {
-        try {
+        /*try {
             Glide.with(this).load(R.drawable.galerie).into(btnSelect);
         } catch (Exception ignored) {
             btnSelect.setImageDrawable(getResources().getDrawable(R.drawable.galerie));
-        }
+        }*/
         /*try {
             Glide.with(this).load(R.drawable.cam).into(btnCamera);
         } catch (Exception ignored) {
@@ -227,8 +240,15 @@ public class Submit extends AppCompatActivity {
         storageReference = storage.getReference();
     }
 
-    private FrameLayout loadingscreen2;
+    private FrameLayout loadingscreen2, drawingTab;
+    private ImageView currentColor;
+    private LinearLayout colorPallete;
     private void variables() {
+        colorPallete = findViewById(R.id.colorPallete);
+        paintView = findViewById(R.id.paintView);
+        undo = findViewById(R.id.undo);
+        currentColor = findViewById(R.id.currentColor);
+        drawingTab = findViewById(R.id.drawingTab);
         loadingscreen2 = findViewById(R.id.loadingscreen2);
         redarrow = findViewById(R.id.btnCancel);
         title = findViewById(R.id.title);
@@ -243,25 +263,160 @@ public class Submit extends AppCompatActivity {
 
     public void SelectImageClicked(View view) {
         newone = true;
-        SelectImage();
+        //SelectImage();
+        openNewDrawingPage();
+    }
+
+    private ImageView undo;
+    private PaintView paintView;
+    private void openNewDrawingPage() {
+    }
+
+
+    @Override
+    public void updateUndo() {
+        if(paintView.amount_of_paths()>0){
+            undo.setVisibility(VISIBLE);
+            undo.setClickable(true);
+            undo.setFocusable(true);
+        }
+
+        if(paintView.amount_of_paths()==0){
+            undo.setVisibility(GONE);
+            undo.setClickable(false);
+            undo.setFocusable(false);
+        }
+    }
+
+    public void redrawClicked(View view) {
+
+        // TODO add a prompt here
+        print("now you can draw a new one");
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        paintView.init(metrics);
+
+        paintView.normal();
+
+        setimages();
+
+        redarrow.setVisibility(GONE);
+        imageView.setVisibility(GONE);
+    }
+
+    public void undoClicked(View view){
+        if(paintView.amount_of_paths()>0){
+            paintView.undo();
+            paintView.invalidate();
+            undo.setVisibility(VISIBLE);
+            undo.setClickable(true);
+            undo.setFocusable(true);
+        }
+
+        if(paintView.amount_of_paths()==0){
+            undo.setVisibility(GONE);
+            undo.setClickable(false);
+            undo.setFocusable(false);
+        }
+    }
+
+    public void blackClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.black));
+        paintView.updateColor(getResources().getColor(R.color.black));
+    }
+
+    public void brownClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.brown));
+        paintView.updateColor(getResources().getColor(R.color.brown));
+    }
+
+
+    public void yellowClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.yellow));
+        paintView.updateColor(getResources().getColor(R.color.yellow));
+    }
+
+    public void cyanClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.cyan));
+        paintView.updateColor(getResources().getColor(R.color.cyan));
+    }
+
+    public void greenClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.green));
+        paintView.updateColor(getResources().getColor(R.color.green));
+    }
+    public void redClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.red));
+        paintView.updateColor(getResources().getColor(R.color.red));
+    }
+
+    public void whiteClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.white));
+        paintView.updateColor(getResources().getColor(R.color.white));
+    }
+    public void violetClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.violet));
+        paintView.updateColor(getResources().getColor(R.color.violet));
+    }
+    public void blueClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.blue));
+        paintView.updateColor(getResources().getColor(R.color.blue));
+    }
+    public void grayClicked(View view){
+        currentColor.setImageDrawable(getResources().getDrawable(R.drawable.gray));
+        paintView.updateColor(getResources().getColor(R.color.gray));
+    }
+
+    private void setimages() {
+        try {
+            Glide.with(this).load(R.drawable.ic_action_name).into(undo);
+        } catch (Exception ignored) {
+            undo.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_name));
+        }
+    }
+
+    public void cancelClicked(View view) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        paintView.init(metrics);
+
+        paintView.normal();
+
+        setimages();
+        colorPallete.setVisibility(VISIBLE);
+        allowdrawing = true;
+        drawingTab.setVisibility(VISIBLE);
+        imageView.setImageBitmap(null);
+        imageView.setVisibility(GONE);
+        redarrow.setVisibility(GONE);
+        /*btnCamera.setVisibility(VISIBLE);*/
+        allow_upload = false;
+        noworkgoingon = true;
+        uploadplease = false;
     }
 
     private boolean uploadplease = false;
     public void uploadImageClicked(View view) {
-        if(ready_to_upload) {
-            if(allow_upload){
-                allow_upload = false;
-                noworkgoingon = false;
-                uploadImage();
+
+        if(allowdrawing){
+            if(paintView.amount_of_paths()==0){
+                print(getString(R.string.plsdraw));
             } else {
-                print(getResources().getString(R.string.already));
+                uploadplease = true;
+                Runnable descaleimageandsaveitRunnable=new Runnable() {@Override public void run() {
+                    try {
+                        // TODO: check image size and set descale accordingly
+                        storeImage(paintView.getBitmap());
+                    } catch(Exception e){
+                        e.printStackTrace();
+                    }
+                } };
+                Thread descaleimageandsaveitThread = new Thread(descaleimageandsaveitRunnable);
+                descaleimageandsaveitThread.start();
             }
         } else {
-            if(newone){
-                print(getResources().getString(R.string.choosefirst));
-            }
-            allow_upload = false;
-            uploadplease = true;
+            print(getString(R.string.already));
         }
     }
 
@@ -277,7 +432,7 @@ public class Submit extends AppCompatActivity {
 
     private Uri file;
     private Button redarrow;
-    private void takePicture() {
+    /*private void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         boolean success = prepare_link();
         if(success){
@@ -288,7 +443,7 @@ public class Submit extends AppCompatActivity {
         } else {
             print(getResources().getString(R.string.gggg));
         }
-    }
+    }*/
 
     /*@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -314,6 +469,8 @@ public class Submit extends AppCompatActivity {
             MediaStore.Images.Media.insertImage(getContentResolver(),mysubmission.getAbsolutePath(),mysubmission.getName(),mysubmission.getName());
             while(!mysubmission.exists()){}
             ready_to_upload = true;
+            allow_upload = true;
+            filePath = Uri.fromFile(mysubmission);
             printer.sendEmptyMessage(0);
         } else {
             printer2.sendEmptyMessage(0);
@@ -323,10 +480,7 @@ public class Submit extends AppCompatActivity {
     private Handler printer = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
-            if(uploadplease){
-                uploadplease = false;
-                uploadImage();
-            }
+            uploadImage();
             //print("Image Ready to be uploaded!!");
             return true; }
     });
@@ -372,12 +526,12 @@ public class Submit extends AppCompatActivity {
     private void print(Object log){
         Toast.makeText(this, String.valueOf(log), Toast.LENGTH_SHORT).show();
     }
-    private void downsizeBitmap() {
+    /*private void downsizeBitmap() {
         Log.i("HH", "before " + BitmapCompat.getAllocationByteCount(bitmap));
         bitmap = getResizedBitmap(bitmap, 3000);
         Log.i("HH", "after " + BitmapCompat.getAllocationByteCount(bitmap));
         imageView.setImageBitmap(bitmap);
-    }
+    }*/
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -407,7 +561,7 @@ public class Submit extends AppCompatActivity {
     }
 
     // Override onActivityResult method
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
@@ -415,7 +569,7 @@ public class Submit extends AppCompatActivity {
                     final Bitmap image = MediaStore.Images.Media.getBitmap(getContentResolver(), file);
                     imageView.setImageBitmap(image);
                     redarrow.setVisibility(VISIBLE);
-                    /*btnCamera.setVisibility(View.INVISIBLE);*/
+                    *//*btnCamera.setVisibility(View.INVISIBLE);*//*
                     btnSelect.setVisibility(View.INVISIBLE);
                     filePath = file;
                     Runnable descaleimageandsaveitRunnable=new Runnable() {@Override public void run() {
@@ -437,7 +591,7 @@ public class Submit extends AppCompatActivity {
                 final Bitmap image = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 imageView.setImageBitmap(image);
                 redarrow.setVisibility(VISIBLE);
-                /*btnCamera.setVisibility(View.INVISIBLE);*/
+                *//*btnCamera.setVisibility(View.INVISIBLE);*//*
                 btnSelect.setVisibility(View.INVISIBLE);
 
                 Runnable descaleimageandsaveitRunnable=new Runnable() {@Override public void run() {
@@ -457,7 +611,7 @@ public class Submit extends AppCompatActivity {
             // Log the exception
             e.printStackTrace();
         }
-    }
+    }*/
 
     private int MAX_LENGTH = 16;
     public String random() {
@@ -629,13 +783,4 @@ public class Submit extends AppCompatActivity {
         }
     }
 
-    public void cancelClicked(View view) {
-        imageView.setImageBitmap(null);
-        redarrow.setVisibility(GONE);
-        btnSelect.setVisibility(VISIBLE);
-        /*btnCamera.setVisibility(VISIBLE);*/
-        allow_upload = false;
-        noworkgoingon = true;
-        uploadplease = false;
-    }
 }

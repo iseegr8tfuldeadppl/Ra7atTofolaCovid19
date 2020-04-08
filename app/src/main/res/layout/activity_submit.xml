@@ -7,13 +7,49 @@
     android:background="@drawable/mainbackground"
     tools:context=".Submit">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/drawingTab">
+        <croissonrouge.darelbeida.competitions.Paint.PaintView
+            android:id="@+id/paintView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <!--Undo button-->
+        <ImageView
+            android:visibility="gone"
+            android:layout_gravity="start|top"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/undo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="undoClicked"/>
+
+        <ImageView
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/currentColor"
+            android:src="@drawable/blue"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+    </FrameLayout>
+
     <ImageView
         android:id="@+id/imageView"
+        android:visibility="gone"
+        android:onClick="redrawClicked"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_height="match_parent"
         android:contentDescription="@string/youdrawing" />
 
     <TextView
@@ -24,6 +60,7 @@
         android:layout_height="wrap_content"
         android:textSize="40sp"
         android:id="@+id/title"
+        android:visibility="gone"
         android:gravity="center"
         android:layout_marginTop="15dp"
         android:textColor="@color/black"
@@ -37,6 +74,7 @@
         android:orientation="horizontal"
         android:gravity="center">
         <ImageView
+            android:visibility="gone"
             android:clickable="true"
             android:focusable="true"
             android:onClick="SelectImageClicked"
@@ -66,7 +104,7 @@
         android:orientation="vertical"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="10dp">
         <Button
             android:visibility="gone"
             android:background="@drawable/buttons"
@@ -80,14 +118,119 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="cancelClicked" />
+
+        <!--Color pallete-->
+        <LinearLayout
+            android:id="@+id/colorPallete"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="@dimen/betweencolorpalletes"
+            android:layout_marginEnd="@dimen/betweencolorpalletes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:onClick="blackClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/black"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="brownClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/brown"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="greenClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/green"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="redClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/red"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="blueClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/blue"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:weightSum="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:onClick="yellowClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/yellow"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:contentDescription="yellow" />
+                <ImageView
+                    android:onClick="grayClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/gray"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="whiteClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/white"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="cyanClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/cyan"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:onClick="violetClicked"
+                    android:layout_marginStart="@dimen/betweencolorpalletes"
+                    android:layout_marginEnd="@dimen/betweencolorpalletes"
+                    android:src="@drawable/violet"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
         <Button
             android:background="@drawable/buttons"
             android:text="@string/upload"
             android:textAllCaps="false"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:id="@+id/btnUpload"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="uploadImageClicked" />
@@ -112,6 +255,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:text="0%"
                 android:textSize="50sp"
                 android:textColor="@color/bluuuuuue"/>
             <RelativeLayout

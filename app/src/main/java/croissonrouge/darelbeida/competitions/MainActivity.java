@@ -42,13 +42,16 @@ public class MainActivity extends AppCompatActivity {
         images();
 
         sql();
-        if(SQLSharing.mycursor.getCount()<=1){
+        if(SQLSharing.mycursor.getCount()<=6){
             SQLSharing.mydb.insertData("");
             SQLSharing.mydb.insertData("");
             SQLSharing.mydb.insertData("");
             SQLSharing.mydb.insertData("");
             SQLSharing.mydb.insertData("");
             SQLSharing.mydb.insertData("");
+            SQLSharing.mydb.insertData(""); // used for drawingmainfragment display version
+            SQLSharing.mydb.insertData(""); // used for readingmainfragment display version
+            SQLSharing.mydb.insertData(""); // used for cookingmainfragment display version
         }
         close_sql();
     }

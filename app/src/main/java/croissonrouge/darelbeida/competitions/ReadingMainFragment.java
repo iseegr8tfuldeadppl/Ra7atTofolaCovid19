@@ -20,16 +20,42 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import java.io.File;
+
+import croissonrouge.darelbeida.competitions.SQLite.SQL;
+import croissonrouge.darelbeida.competitions.SQLite.SQLSharing;
 
 @SuppressLint("ValidFragment")
 public class ReadingMainFragment extends Fragment {
 
     private CommunicationInterface callback;
     private ImageView display1;
+
+
+/*
+
+    private void close_sql() {
+        if(SQLSharing.mycursor!=null)
+            SQLSharing.mycursor.close();
+        if(SQLSharing.mydb!=null)
+            SQLSharing.mydb.close();
+    }
+
+    private void sql() {
+        SQLSharing.mydb = SQL.getInstance(getContext());
+        SQLSharing.mycursor = SQLSharing.mydb.getData();
+    }
+*/
+
 
     @Nullable
     @Override
@@ -39,13 +65,63 @@ public class ReadingMainFragment extends Fragment {
         fonts();
         if(getContext()!=null){
             if(imageexistsinstorage())
-                load_from_storage_and_display(getContext());
+                /*if(wehavecorrectversionfromfirebase()){
+                    close_sql();*/
+                    load_from_storage_and_display(getContext());
+                /*} else{
+                    close_sql();
+                    download_image(getContext());
+                }*/
             else {
                 download_image(getContext());
             }
         }
         return view;
     }
+
+/*
+
+    private boolean failed = false;
+    private boolean wehavecorrectversionfromfirebase() {
+        sql();
+        SQLSharing.mycursor.moveToPosition(7);
+        if(SQLSharing.mycursor.getString(1).equals("")){
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            if (mAuth.getCurrentUser() != null) {
+                final String uid = mAuth.getCurrentUser().getUid();
+
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference userRef = database.getReference("users").child(uid).child("readingmaindisplayversion");
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Object version = dataSnapshot.getValue();
+                        if(version!=null){
+                            String versionned = version.toString();
+                            if(SQLSharing.mycursor.getString(1).equals(versionned)){
+                                failed = false;
+                            } else {
+                                SQLSharing.mydb.updateData(SQLSharing.mycursor.getString(0), versionned);
+                                failed = true;
+                            }
+                        } else {
+                            userRef.setValue("0");
+                            failed=  true;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        userRef.setValue("0");
+                        failed = true;
+                    }
+                });
+            }
+        }
+
+        return failed;
+    }
+*/
 
     private void download_image(final Context context) {
         final FirebaseStorage storage = FirebaseStorage.getInstance();

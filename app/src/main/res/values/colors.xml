@@ -13,4 +13,13 @@
     <color name="loadingscreencolor">#98555555</color>
     <color name="white">#FFF</color>
     <color name="bluuuuuue">#1EE1E4</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#0000FF</color>
+    <color name="green">#00FF00</color>
+    <color name="violet">#A100FF</color>
+    <color name="gray">#5C6465</color>
+    <color name="cyan">#65FFED</color>
+    <color name="yellow">#EEFF2E</color>
+    <color name="brown">#B8882C</color>
+    <color name="orange">#E89333</color>
 </resources>

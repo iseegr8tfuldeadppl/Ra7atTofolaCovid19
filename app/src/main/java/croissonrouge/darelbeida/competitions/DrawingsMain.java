@@ -31,7 +31,7 @@ public class DrawingsMain extends AppCompatActivity  implements  CommunicationIn
     }
 
     private void haveialreadysubmitted() {
-        sql();
+        /*sql();
         if(SQLSharing.mycursor.getCount()>=2){
             SQLSharing.mycursor.moveToFirst();
             SQLSharing.mycursor.moveToNext();
@@ -41,7 +41,7 @@ public class DrawingsMain extends AppCompatActivity  implements  CommunicationIn
                 enter2.setText(getResources().getString(R.string.joinagain));
             }
         }
-        close_sql();
+        close_sql();*/
     }
 
 

@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">إستراحة الطفولة</string>
     <string name="drawingstitle">مسابقة الرسم</string>
-    <string name="readingtitle">مسابقة المطالعة</string>
+    <string name="readingtitle">مسابقة قِصَصْ و شِعْرْ</string>
     <string name="checksubmissions">رسومات أصدقائي</string>
-    <string name="checksubmissions2">مطالعات أصدقائي</string>
+    <string name="checksubmissions2">قِصَصْ و شِعْرْ أصدقائي</string>
     <string name="checksubmissions3">أطباق أصدقائي</string>
     <string name="submit">الدخول</string>
-    <string name="drawingmaintext">في هذه المسابقة عليك برسم أي شيء ثم أخذ صورة له و المشاركة بها! بإمكان أصدقائك تقييم رسمك! يمكنك محاولة رسم الصورة بالأسفل أو رسم أي شيء تريد! إضغظ على زر: رسومات أصدقائي للإطّلاع على رسومات أصدقائك و تقييمها!</string>
+    <string name="drawingmaintext">في هذه المسابقة عليك برسم أي شيء المشاركة برسمك! بإمكان أصدقائك تقييم رسمك! يمكنك محاولة رسم الصورة بالأسفل أو رسم أي شيء تريد! إضغظ على زر: رسومات أصدقائي للإطّلاع على رسومات أصدقائك و تقييمها!</string>
     <string name="fish">سمكة</string>
     <string name="star">نجْمة</string>
     <string name="rate">تقييم</string>
@@ -38,11 +38,11 @@
     <string name="onevoted">مقيّمة من شخص واحد</string>
     <string name="chakhs">شخص</string>
     <string name="red_arrow">red arrow</string>
-    <string name="changer">إختر صورة أخرى</string>
+    <string name="changer">رسم جديد</string>
     <string name="noone">لم يشارك أحد في المسابقة بعد، كن أول من يشارك!</string>
     <string name="lemmein">أريد المشاركة!</string>
     <string name="joinagain">إعادة المشاركة</string>
-    <string name="already">تم المشاركة بهذه الصورة!</string>
+    <string name="already">تم المشاركة بهذه الصورة من قبل!</string>
     <string name="choosefirst">إختر صورة أولا!</string>
     <string name="gggg">مساحة الهاتف غير كافية أو لست متصل بالإنترنت</string>
     <string name="donee">تم دخول المسابقة!</string>
@@ -51,7 +51,7 @@
     <string name="doyouhaveinternet">هل أنت متَّصِل بالإنترنت؟</string>
     <string name="connecting">جاري الإتِّصال بالإنترنت..</string>
     <string name="readingexplanation">في هذه المسابقة بإمكانك كتابة شعر، كتابة قصة أو تلخيص كتاب قد قرأته و عرضه على زملائك لتقييمه!</string>
-    <string name="joinwithreading">المشاركة بمطالعتك</string>
+    <string name="joinwithreading">المشاركة بقِصَصْك أو شِعْرِك</string>
     <string name="yourresume">ملخَّصك</string>
     <string name="booknam">العنوان</string>
     <string name="takepicofbook">أخذ صورة للكِتاب</string>
@@ -75,4 +75,5 @@
     <string name="gcg">قمت بتفعيل الصلاحية</string>
     <string name="dpoo">يرجى تفعيل الصلاحية</string>
     <string name="rahaaa">إستراحة الطفولة</string>
+    <string name="plsdraw">يرجى الرسم أولا</string>
 </resources>
