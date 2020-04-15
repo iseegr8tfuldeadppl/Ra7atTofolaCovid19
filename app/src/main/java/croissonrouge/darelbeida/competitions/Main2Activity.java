@@ -132,7 +132,7 @@ public class Main2Activity extends AppCompatActivity {
                 if (keyCode == KeyEvent.KEYCODE_ENTER) { //Whenever you got user click enter. Get text in edittext and check it equal test1. If it's true do your code in listenerevent of button3
                     if(!String.valueOf(name.getText()).equals("")){
                         loadingscreen.setVisibility(View.VISIBLE);
-                        login_reload_firebase_login();
+                        login_reload_firebase_login(true);
                     } else {
                         print(getResources().getString(R.string.ggef));
                     }
@@ -209,6 +209,7 @@ public class Main2Activity extends AppCompatActivity {
         } else {
             runfrontpage();
             fuckyouloadingscreen.setVisibility(View.GONE);
+            loadingscreen.setVisibility(View.GONE);
             checknameinfirebse();
         }
     }
@@ -242,6 +243,7 @@ public class Main2Activity extends AppCompatActivity {
             } else {
                 runfrontpage();
                 fuckyouloadingscreen.setVisibility(View.GONE);
+                loadingscreen.setVisibility(View.GONE);
                 checknameinfirebse();
             }
         }
@@ -254,7 +256,7 @@ public class Main2Activity extends AppCompatActivity {
     public void confirmClicked(View view) {
         if(!String.valueOf(name.getText()).equals("")){
             loadingscreen.setVisibility(View.VISIBLE);
-            login_reload_firebase_login();
+            login_reload_firebase_login(true);
         } else {
             print(getResources().getString(R.string.ggef));
         }
@@ -265,7 +267,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     private FirebaseAuth mAuth;
-    private void login_reload_firebase_login() {
+    private void login_reload_firebase_login(final boolean good) {
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
@@ -300,7 +302,7 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         print(getResources().getString(R.string.doyouhaveinternet));
-                        login_reload_firebase_login();
+                        login_reload_firebase_login(false);
                     }
                 });
             }
@@ -315,20 +317,26 @@ public class Main2Activity extends AppCompatActivity {
 
                             if (!task.isSuccessful()) {
                                 print(getResources().getString(R.string.doyouhaveinternet));
-                                login_reload_firebase_login();
+                                login_reload_firebase_login(good);
                             } else {
 
-                                String uid = mAuth.getCurrentUser().getUid();
-                                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference userRef = database.getReference("users").child(uid).child("name");
-                                theirname = String.valueOf(name.getText());
-                                userRef.child("name").setValue(theirname);
-                                if(linesinsql==1){
-                                    SQLSharing.mydb.updateData(_ID, theirname);
+                                if(good){
+                                    String uid = mAuth.getCurrentUser().getUid();
+                                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference userRef = database.getReference("users").child(uid).child("name");
+                                    theirname = String.valueOf(name.getText());
+                                    userRef.child("name").setValue(theirname);
+                                    if(linesinsql==1){
+                                        SQLSharing.mydb.updateData(_ID, theirname);
+                                    } else {
+                                        SQLSharing.mydb.insertData(theirname);
+                                    }
+                                    outter();
                                 } else {
-                                    SQLSharing.mydb.insertData(theirname);
+                                    runfrontpage();
+                                    fuckyouloadingscreen.setVisibility(View.GONE);
+                                    loadingscreen.setVisibility(View.GONE);
                                 }
-                                outter();
 
                             }
                         }
@@ -355,16 +363,19 @@ public class Main2Activity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Object name = dataSnapshot.child("name").getValue();
                             if(name!=null){
-                                only_login_to_firebase(true);
+                                if(!name.toString().equals(""))
+                                    only_login_to_firebase(true);
+                                else
+                                    login_reload_firebase_login(false);
                             } else {
-                                login_reload_firebase_login();
+                                login_reload_firebase_login(false);
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
                             print(getResources().getString(R.string.doyouhaveinternet));
-                            login_reload_firebase_login();
+                            login_reload_firebase_login(false);
                         }
                     });
                 }
@@ -379,20 +390,12 @@ public class Main2Activity extends AppCompatActivity {
 
                                 if (!task.isSuccessful()) {
                                     print(getResources().getString(R.string.doyouhaveinternet));
-                                    login_reload_firebase_login();
+                                    login_reload_firebase_login(false);
                                 } else {
 
-                                    String uid = mAuth.getCurrentUser().getUid();
-                                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    DatabaseReference userRef = database.getReference("users").child(uid).child("name");
-                                    theirname = String.valueOf(name.getText());
-                                    userRef.child("name").setValue(theirname);
-                                    if(linesinsql==1){
-                                        SQLSharing.mydb.updateData(_ID, theirname);
-                                    } else {
-                                        SQLSharing.mydb.insertData(theirname);
-                                    }
-                                    outter();
+                                    runfrontpage();
+                                    fuckyouloadingscreen.setVisibility(View.GONE);
+                                    loadingscreen.setVisibility(View.GONE);
 
                                 }
                             }
@@ -404,7 +407,10 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
 
+    // TODO ADD A CHECK THAT ALLOWS U TO UPDATE IMAGE DISPLAY FOR DRAWINGMAINFRAGMENT, READINGMAINFRAGMENT, STRAIGHTFROMDATABASE
+    private boolean bb = false;
     private void only_login_to_firebase(final boolean b) {
+        bb = b;
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null) {
@@ -422,7 +428,7 @@ public class Main2Activity extends AppCompatActivity {
 
                             if (!task.isSuccessful()) {
                                 print(getResources().getString(R.string.doyouhaveinternet));
-                                only_login_to_firebase(b);
+                                only_login_to_firebase(bb);
                             } else {
                                 loadingscreen.setVisibility(View.GONE);
                                 if(b)
