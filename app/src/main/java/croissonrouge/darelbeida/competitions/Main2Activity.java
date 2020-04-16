@@ -65,7 +65,6 @@ public class Main2Activity extends AppCompatActivity {
     private void fonts() {
         Typeface font = Typeface.createFromAsset(getAssets(), "Tajawal-Regular.ttf");
 
-        tofolaa.setTypeface(font);
         boob2.setTypeface(font);
         parental.setTypeface(font);
         enter.setTypeface(font);
@@ -78,9 +77,9 @@ public class Main2Activity extends AppCompatActivity {
         boob.setTypeface(font);
     }
 
-    private TextView tofola, organization, creditter, parental, titler1, titler2, boob, boob2, tofolaa;
+    private TextView tofola, organization, creditter, parental, titler1, titler2, boob, boob2;
     private Button enter;
-    private ImageView logo, logo2;
+    private ImageView logo;
     private FrameLayout loadingscreen;
     private void variables() {
         boob2 = findViewById(R.id.boob2);
@@ -92,12 +91,10 @@ public class Main2Activity extends AppCompatActivity {
         organization = findViewById(R.id.organization);
         enter = findViewById(R.id.enter);
         logo = findViewById(R.id.logo);
-        logo2 = findViewById(R.id.logo2);
         creditter = findViewById(R.id.creditter);
         boob = findViewById(R.id.boob);
         titler2 = findViewById(R.id.titler2);
         titler1 = findViewById(R.id.titler1);
-        tofolaa = findViewById(R.id.tofolaa);
     }
 
 
@@ -149,11 +146,11 @@ public class Main2Activity extends AppCompatActivity {
         } catch (Exception ignored) {
             logo.setImageDrawable(getResources().getDrawable(R.drawable.logo));
         }
-        try {
+        /*try {
             Glide.with(this).load(R.drawable.logogg).into(logo2);
         } catch (Exception ignored) {
             logo2.setImageDrawable(getResources().getDrawable(R.drawable.logogg));
-        }
+        }*/
     }
 
     private String theirname;

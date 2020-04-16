@@ -15,27 +15,6 @@
         android:gravity="top|center_horizontal"
         android:layout_marginTop="@dimen/logofromtop">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="@dimen/logosize"
-                android:layout_height="@dimen/logosize"
-                android:id="@+id/logo"
-                android:layout_marginBottom="@dimen/betweenlogontitle"
-                android:contentDescription="@string/app_name" />
-            <TextView
-                android:gravity="center"
-                android:textSize="@dimen/tofolaa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/tofola"
-                android:textColor="@color/uncoolred"
-                android:id="@+id/tofola"/>
-        </LinearLayout>
-        <LinearLayout
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,21 +38,30 @@
         </LinearLayout>
     </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
 
+
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="@dimen/logosize"
+                android:layout_height="@dimen/logosize"
+                android:id="@+id/logo"
+                android:layout_marginBottom="@dimen/betweenlogontitle"
+                android:contentDescription="@string/app_name" />
             <TextView
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="50dp"
+                android:gravity="center"
+                android:textSize="@dimen/tofolaa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="37sp"
-                android:textColor="@color/black"
-                android:id="@+id/tofolaa"
                 android:text="@string/rahaaa"
-                android:gravity="center" />
+                android:textColor="@color/uncoolred"
+                android:id="@+id/tofola"/>
 
             <EditText
                 android:background="@drawable/rounded_edittext"

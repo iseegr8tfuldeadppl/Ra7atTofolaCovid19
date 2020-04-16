@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity {
 
         tofolaa.setTypeface(font);
         parental.setTypeface(font);
-        tofola.setTypeface(font);
         drawing.setTypeface(font);
         connecting.setTypeface(font);
         reading.setTypeface(font);
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         creditter.setTypeface(font);
     }
 
-    private TextView tofola, connecting, organization, creditter, parental, tofolaa;
+    private TextView connecting, organization, creditter, parental, tofolaa;
     private Button drawing, reading, cooking;
     private ImageView logo, logo2;
     private FrameLayout loadingscreen;
@@ -142,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         tofolaa = findViewById(R.id.tofolaa);
         parental = findViewById(R.id.parental);
         cooking = findViewById(R.id.cooking);
-        tofola = findViewById(R.id.tofola);
         reading = findViewById(R.id.reading);
         drawing = findViewById(R.id.drawing);
         logo = findViewById(R.id.logo);
@@ -175,11 +173,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception ignored) {
             logo.setImageDrawable(getResources().getDrawable(R.drawable.logo));
         }
-        try {
+        /*try {
             Glide.with(this).load(R.drawable.logogg).into(logo2);
         } catch (Exception ignored) {
             logo2.setImageDrawable(getResources().getDrawable(R.drawable.logogg));
-        }
+        }*/
     }
 
     public void drawingsClicked(View view) {
